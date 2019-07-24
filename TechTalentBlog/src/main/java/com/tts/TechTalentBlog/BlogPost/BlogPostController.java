@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class BlogPostController {
@@ -31,8 +34,14 @@ public class BlogPostController {
 	    return "blogpost/result";
 	}
 	
-	@GetMapping(value = "/blogposts/new")
+	@GetMapping(value="/blogposts/new")
 	public String newBlog (BlogPost blogPost) {
 	    return "blogpost/new";
+	}
+	
+	@RequestMapping(value="/blogposts/{id}", method=RequestMethod.DELETE)
+	public String deletePostWithId(@PathVariable Long id, BlogPost blogPost) {
+		this.blogPostRepository.deleteById(id);
+		return "blogpost/index";
 	}
 }

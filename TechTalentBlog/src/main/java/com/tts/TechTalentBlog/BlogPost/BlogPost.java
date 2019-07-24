@@ -23,7 +23,9 @@ public class BlogPost {
 		this.author = author;
 		this.blogEntry = blogEntry;
 	}
-
+		
+	public Long getId() { return this.id; }
+	
 	public String getTitle() {
 		return title;
 	}
