@@ -2,6 +2,7 @@ package com.tts.TechTalentBlog.BlogPost;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,6 +38,12 @@ public class BlogPostController {
 	@GetMapping(value="/blogposts/new")
 	public String newBlog (BlogPost blogPost) {
 	    return "blogpost/new";
+	}
+	
+	@GetMapping(value="/blogposts/{id}")
+	public String editPostWithId(@PathVariable Long id, Model model) {
+		//
+		return "blogpost/edit";
 	}
 	
 	@RequestMapping(value="/blogposts/{id}", method=RequestMethod.DELETE)

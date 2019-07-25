@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<div th:replace="/fragments/styling :: head-style"></div>
+	</head>
+	<body>
+		<div th:replace="/fragments/navbar :: navbar"></div>
+		<div class="container">
+			<form action="#" th:action="@{/blogposts/{id}(id=${blogPost.getId()})}" th:object="${blogPost}" method="post">
+				<div class="form-group">
+					<input type="text" class="form-control" th:value="${blogPost.title}" th:field="*{title}">
+				</div>
+				
+				<div>
+					<input>
+				</div>
+				
+				<div>
+					<input>
+				</div>
+				
+				<button></button>
+			</form>
+		</div>
+	
+		<div th:replace="/fragments/styling :: body-links"></div>
+	</body>
+</html>
