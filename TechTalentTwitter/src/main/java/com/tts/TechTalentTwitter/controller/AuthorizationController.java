@@ -41,6 +41,6 @@ public class AuthorizationController {
 			model.addAttribute("user", new User());
 		}
 		
-		return "registration"d;
+		return "registration";
 	}
 }
