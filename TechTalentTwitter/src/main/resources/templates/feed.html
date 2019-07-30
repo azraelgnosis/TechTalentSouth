@@ -11,18 +11,14 @@
 	</head>
 	<body>
 		<div class="container">
-			<h2>Welcome</h2>
-			<form th:action="@{/login}" method="post">
-				<br/>
-				<input type="text" id="username" th:placeholder="Username" class="form-control"/>
-				<br/>
-				<input type="password" th:placeholder="Password" id="password" name="pasword" class="form-control"/>
-				<br/>
-				<div align="center" th:if="${param.error}">
-					<h4 style="color: red">Login unsuccessful.</h4>
-				</div>
-				<button class="btn btn-md btn-success btn-block" name="Submit" value="Login" type="Submit">Login in</button>
-			</form>
+			<h2>Tweets</h2>
+			<div th:each="tweet:${tweetList}">
+				<h5>
+					@<span th:text="${tweet.user.username}"></span>
+					<small><span th:text="${#dates.format(tweet.createdAt, 'M/d/yy')}"></span></small>
+				</h5>
+				<p th:utext="${tweet.message}"></p>
+			</div>
 		</div>
 	</body>
 </html>

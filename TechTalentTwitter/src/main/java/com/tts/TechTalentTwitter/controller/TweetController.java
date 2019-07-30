@@ -24,7 +24,7 @@ public class TweetController {
 	@Autowired
 	private TweetService tweetService;
 	
-	@GetMapping(value= {"/tweets", "/"})
+	@GetMapping(value={"/tweets", "/"})
 	public String getFeed(Model model) {
 		List<Tweet> tweets = tweetService.findAll();
 		model.addAttribute("tweetList", tweets);

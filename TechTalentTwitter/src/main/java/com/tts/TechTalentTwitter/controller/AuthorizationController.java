@@ -31,7 +31,7 @@ public class AuthorizationController {
 	
 	@PostMapping(value="/signup")
 	public String createNewUser(@Valid User user, BindingResult bindingResult, Model model) {
-		User userExists =userService.findByUsername(user.getUsername());
+		User userExists = userService.findByUsername(user.getUsername());
 		if (userExists != null) {
 			bindingResult.rejectValue("username",  "error.user", "Username is already taken");
 		}
