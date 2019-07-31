@@ -1,6 +1,7 @@
 package com.tts.TechTalentTwitter.model;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -40,8 +41,8 @@ public class User {
 	private String email;
 	
 	@NotEmpty(message = "Please provide a username")
-    @Length(min = 3, message = "Your username must have at least 3 characters")
-    @Length(max = 15, message = "Your username cannot have more than 15 characters")
+//    @Length(min = 3, message = "Your username must have at least 3 characters")
+    @Length(min=3, max = 15, message = "Your username cannot have more than 15 characters")
     @Pattern(regexp="[^\\s]+", message="Your username cannot contain spaces")
     private String username;
 	
@@ -60,6 +61,15 @@ public class User {
 	private Date createdAt;
 	
 	@ManyToMany(cascade=CascadeType.ALL)
-	@JoinTable(name="user_role", joinColumns=@JoinColumn(name="user_id"), inverseJoinColumns=@JoinColumn(name="role_id"))
+	@JoinTable(name="user_role", joinColumns=@JoinColumn(name="user_id"), 
+				inverseJoinColumns=@JoinColumn(name="role_id"))
 	private Set<Role> roles;
+	
+	@ManyToMany(cascade=CascadeType.ALL)
+	@JoinTable(name="user_follower", joinColumns=@JoinColumn(name="user_id"), 
+				inverseJoinColumns = @JoinColumn(name="follower_id"))
+	private List<User> followers;
+	
+	@ManyToMany(mappedBy="followers")
+	private List<User> following;
 }
